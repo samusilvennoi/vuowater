@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="VUO is a Finnish water brand: spring water in a 0.5-litre bottle with a body made from wood fibre. VUO is in development.">
+<meta name="theme-color" content="#E9E4D8">
+<meta property="og:title" content="VUO">
+<meta property="og:description" content="Finnish spring water in a bottle made from wood.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vuowater.com/">
+<link rel="canonical" href="https://vuowater.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2312304F'/%3E%3Cpath d='M18 20l14 26 14-26' fill='none' stroke='%23F4F1EA' stroke-width='4'/%3E%3C/svg%3E">
+<title>VUO – Finnish spring water in a bottle made from wood</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap">
+<style>
+/* Layout: pinned hero (bottle standing in the navy "water", ripple halftone behind) that dissolves on scroll
+   into a quiet, left-aligned editorial page; one navy band mid-page; the wave signature returns at the foot. */
+:root{
+  color-scheme: light;
+  --navy:#12304F;
+  --navy-deep:#0C2238;
+  --beige:#E9E4D8;
+  --cream:#F4F1EA;
+  --bronze:#B08D57;
+  --sand:#D9BE90;
+  --ink:var(--navy);
+  --ink-soft:rgba(18,48,79,.74);
+  --rule:rgba(176,141,87,.6);
+  --rule-faint:rgba(18,48,79,.16);
+  --on-navy:var(--cream);
+  --on-navy-soft:rgba(244,241,234,.74);
+  --font:"Jost","Century Gothic","Avenir Next","Futura",system-ui,sans-serif;
+  --t-hero:clamp(2rem,3.5vw,3.6rem);
+  --t-h2:clamp(1.9rem,3.4vw,3.1rem);
+  --t-lead:clamp(1.2rem,1.7vw,1.5rem);
+  --t-body:1.0625rem;
+  --t-small:.9rem;
+  --t-label:.76rem;
+  --gutter:clamp(20px,5vw,72px);
+  --section:clamp(88px,11vw,168px);
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .29 0 0 0 0 .2 .3 0 0 0 -.08'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--beige) var(--grain);color:var(--ink);font-family:var(--font);font-weight:400;font-size:var(--t-body);line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+*,*::before,*::after{box-sizing:border-box}
+h1,h2,h3,p,dl,dd,ul,figure{margin:0}
+ul{padding:0;list-style:none}
+h1,h2,h3{font-weight:300;line-height:1.12;text-wrap:balance;letter-spacing:-.005em}
+a{color:inherit}
+svg{display:block}
+:focus-visible{outline:2px solid var(--bronze);outline-offset:3px}
+.wrap{max-width:1240px;margin-inline:auto;padding-left:max(var(--gutter),env(safe-area-inset-left,0px));padding-right:max(var(--gutter),env(safe-area-inset-right,0px))}
+.label{display:flex;align-items:center;gap:14px;font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;font-weight:400}
+.label::before{content:"";width:34px;height:1px;background:var(--bronze);flex:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;padding:.85em 1.7em;border:1px solid currentColor;border-radius:999px;font:inherit;font-size:var(--t-label);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:inherit;background:transparent;cursor:pointer;transition:background-color .25s,color .25s,border-color .25s}
+.btn:hover{background:var(--navy);border-color:var(--navy);color:var(--cream)}
+.btn-solid{background:var(--navy);border-color:var(--navy);color:var(--cream)}
+.btn-solid:hover{background:var(--navy-deep);border-color:var(--navy-deep)}
+.on-navy .btn:hover{background:var(--cream);border-color:var(--cream);color:var(--navy)}
+.sprite{position:absolute;width:0;height:0;overflow:hidden}
+
+/* ── Header ─────────────────────────────────────────── */
+.top{position:fixed;inset:0 0 auto 0;z-index:30;padding-top:env(safe-area-inset-top,0px);transition:background-color .35s,box-shadow .35s}
+.top-in{display:flex;align-items:center;gap:clamp(20px,3vw,44px);height:76px}
+.logo{font-size:1.55rem;letter-spacing:.34em;text-decoration:none;font-weight:400;margin-right:auto;padding-left:.1em}
+.top nav{display:flex;gap:clamp(18px,2.6vw,38px)}
+.top nav a{font-size:var(--t-label);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;padding-block:8px;background:linear-gradient(var(--bronze),var(--bronze)) no-repeat 0 100%/0 1px;transition:background-size .3s}
+.top nav a:hover{background-size:100% 1px}
+.top .btn{padding:.7em 1.3em}
+.top.is-solid{background:var(--beige);box-shadow:0 1px 0 rgba(18,48,79,.08),0 12px 28px -18px rgba(18,48,79,.4)}
+@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.top.is-solid{background:rgba(233,228,216,.72);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4)}}
+@media (max-width:900px){.top nav{display:none}.top-in{height:64px}}
+
+/* ── Hero ───────────────────────────────────────────── */
+.hero-wrap{position:relative;z-index:1}
+.hero{--bh:min(67vh,760px);--lift:12vh;--bx:63%;--bw:calc(var(--bh)*.375);--wl:calc(var(--lift) + var(--bh)*.215);--p:0;
+  position:relative;height:100vh;min-height:600px;overflow:hidden;background:var(--grain),radial-gradient(farthest-corner at var(--bx) 46%,#F8F5EF 0%,#F0EBE1 24%,#E3DCCC 60%,#CEC4AE 100%)}
+@supports (height:100svh){.hero{--bh:min(67svh,760px);--lift:12svh;height:100svh}}
+.js .hero-wrap{height:170vh}
+@supports (height:100svh){.js .hero-wrap{height:170svh}}
+.js .hero{position:sticky;top:0}
+.hero-dots{position:absolute;inset:0;width:100%;height:100%;filter:blur(.5px)}
+.hero-water,.hero-front{position:absolute;left:-4%;right:-4%;bottom:-60px;will-change:transform}
+.hero-water{height:calc(var(--wl) + 90px);transform:translate3d(calc(var(--p)*1.5%),calc(var(--p)*-12px),0)}
+.hero-front{height:calc(var(--lift) + var(--bh)*.035 + 90px);transform:translate3d(calc(var(--p)*-2.5%),calc(var(--p)*-40px),0)}
+.hero-water svg,.hero-front svg{position:absolute;inset:0 0 auto 0;width:100%;height:60px}
+.hero-water::after,.hero-front::after{content:"";position:absolute;inset:59px 0 0 0}
+.hero-water::after{background:linear-gradient(#15375A,#0F2943 60%,#0A1E33)}
+.hero-front::after{background:linear-gradient(#0B2036,#050F1A)}
+.hero-glow{position:absolute;left:calc(var(--bx) - var(--bw)*2);width:calc(var(--bw)*4);bottom:calc(var(--wl) - 36px);height:84px;background:radial-gradient(closest-side,rgba(244,241,234,.36),rgba(244,241,234,0));pointer-events:none;opacity:calc(1 - var(--p)*2)}
+.hero-bottle{position:absolute;bottom:var(--lift);left:calc(var(--bx) - var(--bw)/2);width:var(--bw);height:var(--bh);
+  opacity:calc(1.5 - var(--p)*2.4);transform:translateY(calc(var(--p)*-5%)) scale(calc(1 + var(--p)*.06));transform-origin:50% 70%;will-change:transform,opacity}
+.hero-bottle svg{width:100%;height:100%;filter:drop-shadow(8px 8px 9px rgba(70,54,28,.14)) drop-shadow(36px 24px 28px rgba(70,54,28,.34))}
+.hero-in{position:absolute;inset:0;pointer-events:none}
+.hero-copy{opacity:calc(1 - var(--p)*2.4);transform:translateY(calc(var(--p)*-48px))}
+.hero h1{position:absolute;left:max(var(--gutter),env(safe-area-inset-left,0px));top:42.5%;translate:0 -50%;font-size:clamp(2rem,3.3vw,3.4rem);line-height:1.28;text-wrap:wrap;pointer-events:auto}
+.hero-side{position:absolute;left:calc(var(--bx) + var(--bw)/2 + 4.5vw);right:max(var(--gutter),env(safe-area-inset-right,0px));top:44.5%;max-width:13.5rem;display:grid;gap:12px}
+.hero-side .label{font-size:.68rem;gap:10px}
+.hero-side .label::before{width:22px}
+.hero-side p{font-size:.95rem;line-height:1.6}
+.hero-veil{position:absolute;inset:0;background:var(--beige) var(--grain);opacity:calc(var(--p)*2.1 - .42);pointer-events:none}
+@media (max-width:900px){
+  .hero{--bh:min(52vh,520px);--lift:8vh;--bx:50%}
+  @supports (height:100svh){.hero{--bh:min(52svh,520px);--lift:8svh}}
+  .hero-in{position:relative;inset:auto;padding-top:calc(64px + 22px + env(safe-area-inset-top,0px))}
+  .hero h1{position:static;translate:none;font-size:clamp(1.7rem,7.2vw,2.5rem);line-height:1.16;max-width:11.5em;text-wrap:balance}
+  .hero h1 br{display:none}
+  .hero-side{position:relative;left:auto;right:auto;top:auto;max-width:none;margin-top:16px;padding-left:max(var(--gutter),env(safe-area-inset-left,0px));padding-right:max(var(--gutter),env(safe-area-inset-right,0px))}
+  .hero-side .label{font-size:var(--t-label);gap:14px}
+  .hero-side .label::before{width:34px}
+  .hero-side p{display:none}
+}
+
+/* ── Intro ──────────────────────────────────────────── */
+.intro{position:relative;z-index:5;padding-block:10vh var(--section)}
+.js .intro{margin-top:-52vh}
+@supports (height:100svh){.js .intro{margin-top:-52svh}}
+.intro-in{opacity:var(--q,1);transform:translateY(calc((1 - var(--q,1))*40px));display:grid;gap:28px;max-width:60rem}
+.intro h2{font-size:clamp(1.75rem,3.6vw,3.2rem);line-height:1.16}
+.intro p{font-size:var(--t-lead);font-weight:300;color:var(--ink-soft);max-width:34em}
+
+/* ── Views ──────────────────────────────────────────── */
+.js .view{display:none}
+.js .view.is-active{display:block}
+.view:focus{outline:none}
+.back{display:inline-flex;align-items:center;gap:10px;margin-bottom:clamp(32px,5vw,56px);padding-block:6px;font-size:var(--t-label);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .25s}
+.back:hover{border-bottom-color:var(--bronze)}
+.top nav a[aria-current="page"]{background-size:100% 1px}
+.tiles-wrap{padding-bottom:var(--section)}
+
+/* ── Tiles ──────────────────────────────────────────── */
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,2.2vw,32px)}
+.tile{position:relative;aspect-ratio:3/4;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;padding:clamp(16px,2vw,28px);text-decoration:none;color:var(--navy);background:var(--cream);isolation:isolate;box-shadow:0 1px 2px rgba(18,48,79,.08),0 16px 30px -18px rgba(18,48,79,.38);transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover){.tile:hover{transform:translateY(-8px);box-shadow:0 2px 4px rgba(18,48,79,.08),0 34px 48px -22px rgba(18,48,79,.5)}}
+.tile:focus-visible{transform:translateY(-8px);box-shadow:0 2px 4px rgba(18,48,79,.08),0 34px 48px -22px rgba(18,48,79,.5)}
+.tile-art{position:absolute;inset:0;width:100%;height:100%;z-index:-1;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.tile:hover .tile-art{transform:scale(1.04)}
+.tile h3{font-size:clamp(1rem,1.5vw,1.3rem);font-weight:400;letter-spacing:.2em;text-transform:uppercase;line-height:1.3}
+.tile small{display:block;margin-top:8px;font-size:var(--t-small);letter-spacing:0;text-transform:none;opacity:.78}
+.tile .btn{font-size:.7rem;padding:.75em 1.4em}
+.tile:hover .btn{background:var(--navy);border-color:var(--navy);color:var(--cream)}
+.tile.is-navy{background:var(--navy);color:var(--cream)}
+.tile.is-navy:hover .btn{background:var(--cream);border-color:var(--cream);color:var(--navy)}
+.tile.is-sand{background:var(--sand)}
+.tile-bottle{position:absolute;z-index:-1;width:74%;right:-20%;top:15%;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.tile:hover .tile-bottle{transform:translateY(-3%)}
+@media (max-width:980px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:420px){.tile small{display:none}.tile .btn{padding:.7em 1.1em;letter-spacing:.14em}}
+
+/* ── Sections ───────────────────────────────────────── */
+.sec{padding-block:var(--section);scroll-margin-top:calc(40px - var(--section)*.45)}
+.sec-head{display:grid;gap:26px;margin-bottom:clamp(44px,6vw,84px)}
+.sec-head h2{font-size:var(--t-h2);max-width:16em}
+.sec-head p{font-size:var(--t-lead);font-weight:300;color:var(--ink-soft);max-width:32em}
+
+/* Tuote */
+.product{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(36px,7vw,112px);align-items:center}
+.product-fig{background:var(--cream);padding:clamp(28px,5vw,64px) 0 0;position:relative;overflow:hidden}
+.product-stage{position:relative;width:min(46%,230px);margin-inline:auto;aspect-ratio:300/800}
+.product-stage svg{width:100%;height:100%}
+.pin{position:absolute;width:28px;height:28px;margin:-14px 0 0 -14px;border-radius:50%;display:grid;place-items:center;font-size:.8rem;line-height:1;background:var(--navy);color:var(--cream);box-shadow:0 0 0 4px rgba(244,241,234,.75)}
+.pin.on-dark{background:var(--cream);color:var(--navy);box-shadow:0 0 0 4px rgba(18,48,79,.5)}
+.product-fig figcaption{position:relative;margin-top:-1px;background:var(--navy);color:var(--on-navy-soft);font-size:var(--t-small);padding:14px clamp(16px,3vw,28px)}
+.parts{display:grid}
+.part{display:grid;grid-template-columns:28px minmax(0,1fr);column-gap:22px;padding-block:24px;border-top:1px solid var(--rule)}
+.part:last-child{border-bottom:1px solid var(--rule)}
+.part .num{width:28px;height:28px;border-radius:50%;border:1px solid var(--navy);display:grid;place-items:center;font-size:.8rem;line-height:1;margin-top:3px}
+.part dt{font-size:1.35rem;font-weight:300;line-height:1.3}
+.part dd{color:var(--ink-soft);max-width:30em;margin-top:6px}
+@media (max-width:860px){.product{grid-template-columns:minmax(0,1fr)}}
+
+/* Miksi */
+.why{background:linear-gradient(#1A4069 0%,var(--navy) 42%,#0A1E33 100%);color:var(--on-navy)}
+.why .sec-head p{color:var(--on-navy-soft)}
+.fact{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);gap:clamp(28px,6vw,96px);align-items:start}
+.why .sec-head{margin-bottom:clamp(28px,3.4vw,48px)}
+.fact-num{font-size:clamp(4.6rem,15vw,13rem);font-weight:300;line-height:.86;color:var(--sand);letter-spacing:-.02em}
+.fact-unit{display:block;font-size:clamp(1.3rem,2.6vw,2.4rem);letter-spacing:.02em;line-height:1.1;margin-top:.5em;color:var(--on-navy)}
+.fact-pre{display:block;font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;line-height:1;color:var(--on-navy-soft);margin-bottom:1.6em}
+.fact-list{max-width:30em;min-width:0}
+.fact-list li{padding-block:22px;border-top:1px solid var(--rule)}
+.fact-list li:last-child{border-bottom:1px solid var(--rule)}
+.fact-list strong{display:block;font-weight:300;font-size:clamp(1.45rem,2.3vw,1.95rem);line-height:1.2;color:var(--sand)}
+.fact-list p{margin-top:8px}
+.fact-list .src{font-size:var(--t-small);color:var(--on-navy-soft)}
+.fact-list .src a{text-underline-offset:4px;text-decoration-color:var(--bronze)}
+.answer{display:grid;gap:clamp(32px,4vw,56px)}
+.answer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(28px,4vw,64px)}
+.answer-grid>div{border-top:1px solid var(--bronze);padding-top:22px}
+.answer-grid h3{font-size:1.5rem;margin-bottom:12px}
+.answer-grid p{color:var(--ink-soft);max-width:24em}
+@media (max-width:860px){.fact{grid-template-columns:minmax(0,1fr)}.answer-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* Lista */
+.signup{padding-bottom:calc(var(--section) * .8)}
+.signup-in{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(36px,7vw,112px);align-items:end}
+.signup .sec-head{margin-bottom:0}
+.form{display:grid;gap:18px}
+.form label{font-size:var(--t-label);letter-spacing:.2em;text-transform:uppercase}
+.form input{font:inherit;font-size:1.2rem;font-weight:300;color:var(--navy);background:transparent;border:0;border-bottom:1px solid var(--navy);border-radius:0;padding:10px 0 12px;width:100%;min-width:0}
+.form input::placeholder{color:rgba(18,48,79,.42)}
+.form input:focus{outline:none;border-bottom-color:var(--bronze);box-shadow:0 1px 0 var(--bronze)}
+.form .btn{justify-self:start;margin-top:8px;text-align:center;line-height:1.5}
+.form-msg{min-height:1.6em;font-size:var(--t-small)}
+.form-msg.is-error{color:#8A2B1D}
+.fine{font-size:var(--t-small);color:var(--ink-soft);max-width:34em}
+.fine a{text-underline-offset:4px;text-decoration-color:var(--bronze)}
+@media (max-width:860px){.signup-in{grid-template-columns:minmax(0,1fr)}}
+
+/* Yhteys */
+.contact{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(36px,7vw,112px);align-items:start}
+.contact .sec-head{margin-bottom:0}
+.contact-list li{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px;padding-block:24px;border-top:1px solid var(--rule)}
+.contact-list li:last-child{border-bottom:1px solid var(--rule)}
+.contact-list .k{flex-basis:100%;font-size:var(--t-label);letter-spacing:.2em;text-transform:uppercase}
+.contact-list .v{font-size:clamp(1.3rem,2.4vw,1.9rem);font-weight:300;line-height:1.3;text-decoration:none;border-bottom:1px solid transparent;overflow-wrap:anywhere;min-width:0;transition:border-color .25s}
+.contact-list .v:hover{border-bottom-color:var(--bronze)}
+.contact-list .btn{font-size:.7rem;padding:.7em 1.3em}
+@media (max-width:860px){.contact{grid-template-columns:minmax(0,1fr)}}
+
+/* ── Footer ─────────────────────────────────────────── */
+.foot-wave{height:60px;width:100%}
+.foot{background:linear-gradient(var(--navy),#0A1E33);color:var(--on-navy);margin-top:-1px;padding-block:clamp(48px,7vw,96px) calc(36px + env(safe-area-inset-bottom,0px))}
+.foot-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,3fr) minmax(0,3fr);gap:clamp(32px,5vw,80px)}
+.foot-logo{font-size:clamp(3rem,8vw,6.5rem);font-weight:300;letter-spacing:.3em;line-height:1}
+.foot-tag{margin-top:20px;color:var(--on-navy-soft);max-width:22em}
+.foot h3{font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;font-weight:400;color:var(--sand);margin-bottom:18px}
+.foot li{padding-block:5px}
+.foot li a{text-decoration:none;border-bottom:1px solid transparent;transition:border-color .25s}
+.foot li a:hover{border-bottom-color:var(--bronze)}
+.privacy{margin-top:clamp(48px,6vw,80px);border-top:1px solid var(--rule)}
+.privacy summary{cursor:pointer;padding-block:20px;font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.privacy summary::-webkit-details-marker{display:none}
+.privacy summary::after{content:"+";font-size:1.4rem;font-weight:300;letter-spacing:0;color:var(--sand)}
+.privacy[open] summary::after{content:"–"}
+.privacy-body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px clamp(32px,5vw,80px);padding-bottom:28px;font-size:var(--t-small);color:var(--on-navy-soft)}
+.privacy-body strong{display:block;font-weight:400;color:var(--on-navy);margin-bottom:2px}
+.privacy-body a{text-underline-offset:3px;text-decoration-color:var(--bronze)}
+.foot-end{border-top:1px solid var(--rule);padding-top:22px;display:flex;flex-wrap:wrap;gap:8px 32px;justify-content:space-between;font-size:var(--t-small);color:var(--on-navy-soft)}
+@media (max-width:860px){.foot-grid{grid-template-columns:minmax(0,1fr)}.privacy-body{grid-template-columns:minmax(0,1fr)}}
+
+/* ── Motion ─────────────────────────────────────────── */
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .rv{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 42%}
+    @keyframes rise{from{opacity:0;translate:0 32px}to{opacity:1;translate:0 0}}
+  }
+}
+@media (prefers-reduced-motion:no-preference){
+  .hero-bottle svg{animation:bob 6s ease-in-out infinite;will-change:transform}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .hero-bottle,.hero-copy,.intro-in,.hero-water,.hero-front{transform:none}
+  .tile-art,.tile-bottle{transition:none}
+}
+</style>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="g-body" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#D6CFC0"/><stop offset=".13" stop-color="#EFEBE2"/><stop offset=".4" stop-color="#F8F6F1"/><stop offset=".8" stop-color="#EEEAE0"/><stop offset="1" stop-color="#CFC8B8"/>
+    </linearGradient>
+    <linearGradient id="g-navy" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#0B2036"/><stop offset=".2" stop-color="#143657"/><stop offset=".45" stop-color="#173B5F"/><stop offset=".8" stop-color="#12304F"/><stop offset="1" stop-color="#091B2E"/>
+    </linearGradient>
+    <clipPath id="c-body"><path d="M62 58V88C62 146 12 178 12 270V762Q12 790 40 790H260Q288 790 288 762V270C288 178 238 146 238 88V58Z"/></clipPath>
+    <pattern id="p-ribs" width="7" height="60" patternUnits="userSpaceOnUse"><rect width="1.3" height="60" fill="#fff" opacity=".1"/></pattern>
+  </defs>
+  <symbol id="bottle" viewBox="0 0 300 800">
+    <path d="M62 58V88C62 146 12 178 12 270V762Q12 790 40 790H260Q288 790 288 762V270C288 178 238 146 238 88V58Z" fill="url(#g-body)"/>
+    <g clip-path="url(#c-body)">
+      <rect x="0" y="58" width="300" height="16" fill="#12304F" opacity=".12"/>
+      <path d="M0 630C50 620 100 616 150 627S250 646 300 630V800H0Z" fill="url(#g-navy)"/>
+      <path d="M0 619C50 609 100 605 150 616S250 635 300 619" fill="none" stroke="#B08D57" stroke-width="1.6"/>
+    </g>
+    <rect x="54" y="10" width="192" height="54" rx="9" fill="url(#g-navy)"/>
+    <rect x="54" y="24" width="192" height="40" fill="url(#p-ribs)"/>
+    <rect x="54" y="10" width="192" height="14" rx="7" fill="#fff" opacity=".05"/>
+    <text transform="translate(150 442) rotate(-90)" text-anchor="middle" dy=".36em" font-family="Jost, 'Century Gothic', Futura, sans-serif" font-size="90" font-weight="400" letter-spacing="30" fill="#12304F">VUO</text>
+    <text x="152" y="716" text-anchor="middle" font-family="Jost, 'Century Gothic', Futura, sans-serif" font-size="12" letter-spacing="4.5" fill="#F4F1EA" opacity=".9">STILL WATER</text>
+    <text x="152" y="744" text-anchor="middle" font-family="Jost, 'Century Gothic', Futura, sans-serif" font-size="12" letter-spacing="4.5" fill="#F4F1EA" opacity=".9">0.5 L</text>
+  </symbol>
+</svg>
+
+<header class="top" id="top">
+  <div class="wrap top-in">
+    <a class="logo" href="#start" aria-label="VUO, back to start">VUO</a>
+    <nav aria-label="Main menu">
+      <a href="#product">Product</a>
+      <a href="#why">Why a wood bottle?</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn" href="#updates">Stay updated</a>
+  </div>
+</header>
+
+<main>
+<div class="view is-active" data-view="home" tabindex="-1">
+<div class="hero-wrap" id="start">
+  <section class="hero" aria-label="VUO">
+    <canvas class="hero-dots" aria-hidden="true"></canvas>
+    <div class="hero-water" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+        <path d="M0 34C180 14 360 12 560 28S900 54 1140 36S1360 22 1440 30V60H0Z" fill="#15375A"/>
+        <path d="M0 34C180 14 360 12 560 28S900 54 1140 36S1360 22 1440 30" fill="none" stroke="#F4F1EA" stroke-opacity=".4" stroke-width="1" vector-effect="non-scaling-stroke"/>
+        <path d="M0 23C180 3 360 1 560 17S900 43 1140 25S1360 11 1440 19" fill="none" stroke="#B08D57" stroke-width="1.2" vector-effect="non-scaling-stroke"/>
+      </svg>
+    </div>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-bottle"><svg role="img" aria-label="Sketch of the VUO bottle: a light wood-fibre bottle with a dark blue cap and the VUO logo on its side"><use href="#bottle"/></svg></div>
+    <div class="hero-front" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+        <path d="M0 26C200 44 420 48 640 34S1040 8 1240 22S1400 34 1440 30V60H0Z" fill="#0B2036"/>
+        <path d="M0 26C200 44 420 48 640 34S1040 8 1240 22S1400 34 1440 30" fill="none" stroke="#F4F1EA" stroke-opacity=".16" stroke-width="1" vector-effect="non-scaling-stroke"/>
+      </svg>
+    </div>
+    <div class="wrap hero-in">
+      <h1 class="hero-copy">Finnish spring water<br> in a bottle made<br> from wood.</h1>
+    </div>
+    <div class="hero-side hero-copy">
+      <span class="label">In development</span>
+      <p>VUO is not on sale yet. The bottle design and prototype are in progress.</p>
+    </div>
+    <div class="hero-veil" aria-hidden="true"></div>
+  </section>
+</div>
+
+<section class="intro">
+  <div class="wrap">
+    <div class="intro-in">
+      <span class="label">What VUO is</span>
+      <h2>VUO is a Finnish water brand. Spring water in a 0.5-litre bottle with a body made from wood fibre.</h2>
+      <p>The goal is to reduce plastic bottles. VUO is still in development and not yet on sale.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap tiles-wrap">
+  <div class="tiles">
+    <a class="tile rv" href="#product">
+      <svg class="tile-bottle" viewBox="0 0 300 800" aria-hidden="true"><use href="#bottle"/></svg>
+      <h3>Product<small>Bottle and parts</small></h3>
+      <span class="btn">Read more</span>
+    </a>
+    <a class="tile is-navy rv" href="#why">
+      <canvas class="tile-art" data-art="rings" aria-hidden="true"></canvas>
+      <h3>Why a wood bottle?<small>The problem and the answer</small></h3>
+      <span class="btn">Read more</span>
+    </a>
+    <a class="tile is-sand rv" href="#updates">
+      <canvas class="tile-art" data-art="waves" data-tone="dark" aria-hidden="true"></canvas>
+      <h3>Stay updated<small>Email list</small></h3>
+      <span class="btn">Join the list</span>
+    </a>
+    <a class="tile is-navy rv" href="#contact">
+      <canvas class="tile-art" data-art="dots" aria-hidden="true"></canvas>
+      <h3>Contact<small>Email and social</small></h3>
+      <span class="btn">Read more</span>
+    </a>
+  </div>
+</div>
+
+</div>
+
+<section class="sec view" id="product" data-view="product" tabindex="-1">
+  <div class="wrap">
+    <a class="back" href="#start">← Home</a>
+    <div class="sec-head rv">
+      <span class="label">Product</span>
+      <h2>The bottle and its parts</h2>
+    </div>
+    <div class="product">
+      <figure class="product-fig rv">
+        <div class="product-stage">
+          <svg aria-hidden="true"><use href="#bottle"/></svg>
+          <span class="pin" style="left:20%;top:33%">1</span>
+          <span class="pin" style="left:80%;top:47%">2</span>
+          <span class="pin" style="left:50%;top:4.6%;background:var(--cream);color:var(--navy);box-shadow:0 0 0 4px rgba(18,48,79,.5)">3</span>
+          <span class="pin on-dark" style="left:50%;top:84%">4</span>
+        </div>
+        <figcaption>The image is a sketch, not a photo of the finished bottle.</figcaption>
+      </figure>
+      <dl class="parts rv">
+        <div class="part"><span class="num">1</span><div><dt>Body</dt><dd>The body of the bottle is wood fibre. Wood is a renewable raw material.</dd></div></div>
+        <div class="part"><span class="num">2</span><div><dt>Coating</dt><dd>A thin coating on the inside keeps the water in the bottle. The coating material will be decided during prototyping.</dd></div></div>
+        <div class="part"><span class="num">3</span><div><dt>Cap</dt><dd>A screw cap that can be closed again. The cap material has not been chosen yet.</dd></div></div>
+        <div class="part"><span class="num">4</span><div><dt>0.5 litres</dt><dd>Finnish spring water. Still.</dd></div></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="why" data-view="why" tabindex="-1">
+  <div class="sec why on-navy">
+  <div class="wrap">
+    <a class="back" href="#start">← Home</a>
+    <div class="sec-head rv">
+      <span class="label">Why a wood bottle?</span>
+      <h2>Plastic bottles end up in the sea every year.</h2>
+    </div>
+    <div class="fact rv">
+      <div class="fact-num"><span class="fact-pre">Up to an estimated</span>34<span class="fact-unit">billion plastic bottles a year</span></div>
+      <ul class="fact-list">
+        <li>
+          <strong>About 1,000 bottles every second</strong>
+          <p>That is about 65,000 bottles a minute.</p>
+          <p class="src">Calculated from the estimate that up to 34 billion bottles enter the sea each year. Source: <a href="https://europe.oceana.org/press-releases/10-increase-refillables-can-reduce-ocean-pet-plastic-pollution-76/" target="_blank" rel="noopener">Oceana (2020)</a></p>
+        </li>
+        <li>
+          <strong>About 450 years</strong>
+          <p>That is how long a single plastic bottle is estimated to last in the sea. It does not disappear. It breaks into smaller and smaller pieces.</p>
+          <p class="src">Source: <a href="https://www.weforum.org/stories/2018/11/chart-of-the-day-this-is-how-long-everyday-plastic-items-last-in-the-ocean" target="_blank" rel="noopener">World Economic Forum (2018)</a>, data from NOAA and Woods Hole Sea Grant</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  </div>
+  <div class="sec">
+  <div class="wrap">
+    <div class="answer">
+      <span class="label rv">VUO's answer</span>
+      <div class="answer-grid">
+        <div class="rv"><h3>A body made from wood</h3><p>The body of the bottle is wood fibre, a renewable raw material.</p></div>
+        <div class="rv"><h3>Recycled with paper and cardboard</h3><p>The goal is for the bottle to be recycled with paper and cardboard.</p></div>
+        <div class="rv"><h3>One for one</h3><p>Every VUO replaces one plastic bottle.</p></div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<section class="sec signup view" id="updates" data-view="updates" tabindex="-1">
+  <div class="wrap"><a class="back" href="#start">← Home</a></div>
+  <div class="wrap signup-in">
+    <div class="sec-head rv">
+      <span class="label">Stay updated</span>
+      <h2>Want to know when VUO goes on sale?</h2>
+      <p>Leave your email address and we will tell you when sales begin.</p>
+    </div>
+    <form class="form rv" id="signup-form" novalidate>
+      <label for="email">Email address</label>
+      <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="name@example.com" required>
+      <button class="btn btn-solid" type="submit" id="signup-btn">Tell me when VUO goes on sale</button>
+      <p class="form-msg" id="form-msg" role="status" aria-live="polite"></p>
+      <p class="fine">We use your address only for this notice. You can unsubscribe at any time. <a href="#privacy" id="privacy-link">Privacy notice</a></p>
+    </form>
+  </div>
+</section>
+
+<section class="sec view" id="contact" data-view="contact" tabindex="-1">
+  <div class="wrap"><a class="back" href="#start">← Home</a></div>
+  <div class="wrap contact">
+    <div class="sec-head rv">
+      <span class="label">Contact</span>
+      <h2>Write to us.</h2>
+      <p>Questions about VUO, or interested in working together? Email is the surest way to reach us.</p>
+    </div>
+    <ul class="contact-list rv">
+      <li>
+        <span class="k">Email</span>
+        <a class="v" href="mailto:samu@vuowater.com" id="mail">samu@vuowater.com</a>
+        <button class="btn" type="button" id="copy-mail">Copy address</button>
+      </li>
+      <li>
+        <span class="k">Instagram</span>
+        <a class="v" href="https://www.instagram.com/vuowater/" target="_blank" rel="noopener">@vuowater</a>
+      </li>
+      <li>
+        <span class="k">TikTok</span>
+        <a class="v" href="https://www.tiktok.com/@vuowater" target="_blank" rel="noopener">@vuowater</a>
+      </li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<svg class="foot-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0 34C180 14 360 12 560 28S900 54 1140 36S1360 22 1440 30V60H0Z" fill="#12304F"/>
+  <path d="M0 23C180 3 360 1 560 17S900 43 1140 25S1360 11 1440 19" fill="none" stroke="#B08D57" stroke-width="1.2" vector-effect="non-scaling-stroke"/>
+</svg>
+<footer class="foot on-navy">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">VUO</div>
+        <p class="foot-tag">Finnish spring water in a bottle made from wood.</p>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="mailto:samu@vuowater.com">samu@vuowater.com</a></li>
+          <li><a href="https://vuowater.com">vuowater.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Follow</h3>
+        <ul>
+          <li><a href="https://www.instagram.com/vuowater/" target="_blank" rel="noopener">Instagram @vuowater</a></li>
+          <li><a href="https://www.tiktok.com/@vuowater" target="_blank" rel="noopener">TikTok @vuowater</a></li>
+        </ul>
+      </div>
+    </div>
+    <details class="privacy" id="privacy">
+      <summary>Privacy notice</summary>
+      <div class="privacy-body">
+        <p><strong>Controller</strong>VUO, samu@vuowater.com</p>
+        <p><strong>What we collect</strong>Your email address, if you join the list. Nothing else.</p>
+        <p><strong>What we use it for</strong>We email you when VUO goes on sale. Processing is based on your consent.</p>
+        <p><strong>How long we keep it</strong>Until you unsubscribe or ask us to delete your address.</p>
+        <p><strong>Who we share it with</strong>We do not sell or share your address. Addresses are stored in Formspree, a form service that processes them on our behalf. Formspree is based in the United States, so your address is transferred outside the EU.</p>
+        <p><strong>Your rights</strong>You can check, correct or delete your data, or withdraw your consent, by writing to samu@vuowater.com. You can also lodge a complaint with the Finnish Data Protection Ombudsman: <a href="https://tietosuoja.fi" target="_blank" rel="noopener">tietosuoja.fi</a>.</p>
+      </div>
+    </details>
+    <div class="foot-end">
+      <span>© 2026 VUO</span>
+      <span>VUO is in development. The bottle image is a sketch.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  // Email list endpoint. When the list is connected to a form service, put its address here.
+  var FORM_ENDPOINT = "https://formspree.io/f/xqpqaqnz";
+
+  var root = document.documentElement;
+  root.lang = "en";
+  root.classList.add("js");
+
+  var TAU = Math.PI * 2;
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var clamp = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
+  var smooth = function (a, b, v) { var t = clamp((v - a) / (b - a)); return t * t * (3 - 2 * t); };
+
+  function fit(canvas) {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var w = canvas.clientWidth, h = canvas.clientHeight;
+    if (!w || !h) return null;
+    if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) {
+      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+    }
+    var ctx = canvas.getContext("2d");
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+    return { ctx: ctx, w: w, h: h };
+  }
+
+  /* Hero: halftone ripples spreading from the bottle */
+  var wrap = document.querySelector(".hero-wrap");
+  var hero = document.querySelector(".hero");
+  var dots = document.querySelector(".hero-dots");
+  var bottle = document.querySelector(".hero-bottle");
+  var introIn = document.querySelector(".intro-in");
+  var top = document.getElementById("top");
+  var lastPhase = null;
+  var current = null;
+
+  function drawDots(phase) {
+    var c = fit(dots); if (!c) return;
+    var ctx = c.ctx, w = c.w, h = c.h;
+    var bw = bottle.offsetWidth, bh = bottle.offsetHeight;
+    var cx = bottle.offsetLeft + bw / 2, cy = bottle.offsetTop + bh * 0.52;
+    var small = w < 700;
+    var gap = Math.max(20, bh * 0.05);
+    var pitch = small ? 5.5 : 6.5, size = small ? 1.05 : 1.25;
+    var far = Math.max(w, h) * 0.6;
+    var maxR = Math.min(far, Math.hypot(Math.max(cx, w - cx), Math.max(cy, h - cy)) + gap);
+    ctx.fillStyle = "rgb(196,163,108)";
+    for (var r = bw * 0.5 + (phase % 1) * gap; r < maxR; r += gap) {
+      var alpha = 0.7 * smooth(bw * 0.5, bw * 1.0, r) * (1 - smooth(far * 0.28, far, r));
+      if (alpha < 0.02) continue;
+      ctx.globalAlpha = alpha;
+      var n = Math.max(8, Math.round(TAU * r / pitch));
+      ctx.beginPath();
+      for (var k = 0; k < n; k++) {
+        var a = k * TAU / n;
+        var x = cx + Math.cos(a) * r, y = cy + Math.sin(a) * r;
+        if (x < -4 || x > w + 4 || y < -4 || y > h + 4) continue;
+        ctx.moveTo(x + size, y);
+        ctx.arc(x, y, size, 0, TAU);
+      }
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  function onScroll() {
+    var vh = window.innerHeight;
+    var range = wrap.offsetHeight - hero.offsetHeight;
+    var p = range > 0 ? clamp((window.scrollY - wrap.offsetTop) / range) : 0;
+    hero.style.setProperty("--p", p.toFixed(4));
+    var q = clamp((vh * 0.9 - introIn.getBoundingClientRect().top) / (vh * 0.4));
+    introIn.style.setProperty("--q", q.toFixed(4));
+    top.classList.toggle("is-solid", (current && current !== "home") || window.scrollY > 24);
+    var phase = reduce ? 0 : p * 3;
+    if (p < 1 && phase !== lastPhase) { lastPhase = phase; drawDots(phase); }
+  }
+
+  var ticking = false;
+  function queue() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { ticking = false; onScroll(); });
+  }
+  window.addEventListener("scroll", queue, { passive: true });
+  window.addEventListener("resize", function () { lastPhase = null; queue(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { lastPhase = null; queue(); });
+  onScroll();
+
+  /* Views: a card opens its own view, the logo returns home */
+  var views = {};
+  document.querySelectorAll(".view").forEach(function (v) { views[v.dataset.view] = v; });
+  var navLinks = document.querySelectorAll(".top nav a");
+  function route(initial) {
+    var name = location.hash.slice(1);
+    var target = name !== "home" && views[name] ? name : (name === "" || name === "start" || !current ? "home" : null);
+    if (!target || target === current) return;
+    current = target;
+    Object.keys(views).forEach(function (k) { views[k].classList.toggle("is-active", k === target); });
+    navLinks.forEach(function (a) {
+      if (a.getAttribute("href") === "#" + target) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
+    if (!initial || views[name]) window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    if (!initial) views[target].focus({ preventScroll: true });
+    lastPhase = null;
+    onScroll();
+  }
+  window.addEventListener("hashchange", function () { route(false); });
+  route(true);
+
+  /* Tile art */
+  var art = {
+    dots: function (ctx, w, h) {
+      var cx = w * 0.72, cy = h * 0.8, max = Math.hypot(w, h);
+      ctx.fillStyle = "rgb(217,190,144)";
+      for (var r = 14; r < max; r += 15) {
+        ctx.globalAlpha = Math.max(0.12, 0.85 - r / max * 0.8);
+        var n = Math.max(6, Math.round(TAU * r / 6));
+        ctx.beginPath();
+        for (var k = 0; k < n; k++) {
+          var a = k * TAU / n, x = cx + Math.cos(a) * r, y = cy + Math.sin(a) * r;
+          if (x < -3 || x > w + 3 || y < -3 || y > h + 3) continue;
+          ctx.moveTo(x + 1.1, y);
+          ctx.arc(x, y, 1.1, 0, TAU);
+        }
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    },
+    rings: function (ctx, w, h) {
+      var cx = w * 0.74, cy = h * 0.8, max = Math.hypot(w, h);
+      ctx.lineWidth = 1;
+      for (var i = 1, r = 7; r < max; i++, r += 8 + 4 * Math.sin(i * 1.7) + (i % 5 === 0 ? 5 : 0)) {
+        ctx.beginPath();
+        for (var a = 0; a <= TAU + 0.03; a += 0.03) {
+          var k = 1 + 0.07 * Math.sin(a * 2 + 0.6) + 0.035 * Math.sin(a * 3 + 2.1) + 0.012 * Math.sin(a * 6 + i * 0.4);
+          var x = cx + Math.cos(a) * r * k * 1.1, y = cy + Math.sin(a) * r * k;
+          if (a === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = i % 5 === 0 ? "rgba(176,141,87,.95)" : "rgba(217,190,144,.34)";
+        ctx.stroke();
+      }
+    },
+    waves: function (ctx, w, h, tone) {
+      var dark = tone === "dark";
+      ctx.lineWidth = 1;
+      for (var j = 0; j < 15; j++) {
+        var y0 = h * (0.4 + j * 0.043), amp = h * (0.012 + j * 0.0022);
+        ctx.beginPath();
+        for (var x = -2; x <= w + 2; x += 3) {
+          var t = x / w * TAU;
+          var y = y0 + amp * Math.sin(t * 1.1 + j * 0.5) + amp * 0.45 * Math.sin(t * 2.3 + j * 1.1);
+          if (x === -2) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = dark
+          ? "rgba(18,48,79," + (j % 4 === 0 ? 0.75 : 0.16 + j * 0.02).toFixed(3) + ")"
+          : (j % 4 === 0 ? "rgba(176,141,87,.95)" : "rgba(217,190,144," + (0.2 + j * 0.022).toFixed(3) + ")");
+        ctx.stroke();
+      }
+    }
+  };
+  function drawArt(canvas) {
+    var c = fit(canvas); if (!c) return;
+    art[canvas.dataset.art](c.ctx, c.w, c.h, canvas.dataset.tone);
+  }
+  var arts = document.querySelectorAll("canvas[data-art]");
+  if ("ResizeObserver" in window) {
+    var ro = new ResizeObserver(function (entries) { entries.forEach(function (e) { drawArt(e.target); }); });
+    arts.forEach(function (c) { ro.observe(c); });
+  } else {
+    arts.forEach(drawArt);
+  }
+
+  /* Copy email */
+  var copyBtn = document.getElementById("copy-mail");
+  var mail = document.getElementById("mail");
+  copyBtn.addEventListener("click", function () {
+    var done = function () { copyBtn.textContent = "Copied"; setTimeout(function () { copyBtn.textContent = "Copy address"; }, 2200); };
+    var select = function () { var r = document.createRange(); r.selectNodeContents(mail); var sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(mail.textContent).then(done, select);
+    else select();
+  });
+
+  /* Privacy link opens the statement */
+  document.getElementById("privacy-link").addEventListener("click", function () {
+    document.getElementById("privacy").open = true;
+  });
+
+  /* Signup */
+  var form = document.getElementById("signup-form");
+  var email = document.getElementById("email");
+  var msg = document.getElementById("form-msg");
+  var btn = document.getElementById("signup-btn");
+  function say(text, isError) { msg.textContent = text; msg.classList.toggle("is-error", !!isError); }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var value = email.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)) {
+      say("Check the email address. It should look like name@example.com.", true);
+      email.focus();
+      return;
+    }
+    if (!FORM_ENDPOINT) {
+      say("Preview: the form is not connected to the email list yet. Your address was not saved.", true);
+      return;
+    }
+    btn.disabled = true;
+    say("Sending…");
+    fetch(FORM_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({ email: value })
+    }).then(function (res) {
+      if (!res.ok) throw new Error(res.status);
+      form.reset();
+      say("Thank you. We will tell you when VUO goes on sale.");
+    }).catch(function () {
+      say("Sending failed. Try again or write to samu@vuowater.com.", true);
+    }).then(function () { btn.disabled = false; });
+  });
+})();
+</script>
+</body>
+</html>
